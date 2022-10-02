@@ -24,5 +24,20 @@ public class Point {
 
         System.out.println(p1.distance(p2));
         // after the method call is done. we destroy its frame and start our program
+
+
+        // My notes. Conversion between Types
+        double d = 3.14;
+        int k = (int) d; // cast. tell the computer that you are absolute sure of what you are doing
+        System.out.println(k);
+        int m= 3;
+        double l= m;
+        System.out.println("the value of l is : " + l);
+
+        // Other requires a method call
+        String myString = "3";
+        int x = Integer.parseInt(myString); // casting strings is a little complicated
+        System.out.println("the value of x is: " + x);
+
     }
 }
