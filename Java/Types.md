@@ -54,6 +54,10 @@ System.out.println("the value of x is: " + x); // the value of x is 3
 
    * FileResources
 
+   * File
+
+   * Scanner 
+
    * Class you write yourself 
 
      **NOTES**
