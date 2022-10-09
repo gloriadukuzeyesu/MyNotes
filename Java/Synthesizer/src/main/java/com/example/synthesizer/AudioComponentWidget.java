@@ -104,7 +104,7 @@ public class AudioComponentWidget extends Pane {
             parent_.getChildren().remove( line_);
             line_ = null;
         }
-
+        SynthesizeApplication.SpeakerWidgets_.add(this);
 
     }
 
@@ -133,8 +133,6 @@ public class AudioComponentWidget extends Pane {
         line_.setEndY( e.getSceneY() );
         // add line to the parent so it can be drawn
         parent_.getChildren().add( line_ );
-
-        SynthesizeApplication.SpeakerWidgets_.add(this);
 
 
     }
