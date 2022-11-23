@@ -87,6 +87,105 @@ System.out.Println (num2 >>> 2);
 
 
 
+# Inheritance 
+
+All class inheriting feature of other classes such as methods. Reusing the code 
+
+It is the mechanism in java by which one class is allowed to inherit the features(fields and methods) of another class. 
+
+
+
+Use `is a ` keyword. 
+
+* Parent.... Base class or super class
+* Child..... derivered class  or subcalss 
+
+
+
+### examples
+
+IOexpetion inheritis from Exception 
+
+
+
+````java
+// synatx 
+public class DerivedClass extends BaseClass {
+  
+}
+// base is a basename class or parent 
+// derived is the child class 
+````
+
+
+
+## Overriding method
+
+Modigy the way the parent class work. For example, implementing the methods inherited from parent in a different way
+
+```java
+//syntax
+
+@override 
+public void showdetail () {
+  // code of block that override the instruction from the parent class
+}
+```
+
+**Overloading**:  Same method name but different parametes in the same class. Means same method have same name that have different type of parameters that takes in.
+
+```java
+class Poly {
+  public int multiply ( int a , int b) {return a*b; }
+  public int multiply ( int a , int b, int c) {return a*b*c; }
+  public double multiply ( double x , double y, double z) {return x*y*z; }
+}
+
+// the ccompiler will automatically know which one to call when you pass in paramater
+
+class sub2 extends Poly {
+  @overriding
+  public int multiply ( int m, int c) {return m/c;}
+}
+
+```
+
+  
+
+**Overriding**  Same method signature in both super class and subclass. Means methods have the same name and the same parameter type. 
+
+# Polymorphism 
+
+means having different forms. Many classes that are related together by inheritance. A methods that may have different functionality. 
+
+## Protected keyword
+
+enables us to access private methods or public member variable from parent class to sub class
+
+
+
+## Super 
+
+Super.method() enable us to call the parent class versio of a methods in acse we have overridden it
+
+
+
+## Println 
+
+
+
+# JavaFX-UI Library
+
+Stage, scene, and items 
+
+to used a scene we use add.setscene 
+
+* This library allows us to create GUI. using GUI library for java
+
+
+
+
+
 
 
 

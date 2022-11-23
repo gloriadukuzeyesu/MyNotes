@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class Main {
 
     public static int nearestValidPoint( int x, int y, int[][] points) {
@@ -35,6 +37,22 @@ public class Main {
         return arrSing;
     }
 
+
+    public  static  boolean canMakeArithmeticProgression ( int [] arr )
+    {
+        Arrays.sort(arr);
+        int difference = arr[1] - arr[0];
+
+        for ( int i =1; i < arr.length; i ++)
+        {
+            if ( arr[i]- arr[i-1] != difference)
+            {
+                return  false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
         int x = 3;
         int y = 4;
@@ -60,6 +78,11 @@ public class Main {
         int [] sol = new int[] {-1,1,-1,1,-1 };
         int solution = arraySign(sol);
         System.out.println(solution);
+
+        System.out.println("**************** 3rd question ****************");
+
+
+
 
     }
 }
