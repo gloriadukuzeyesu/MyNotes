@@ -1,6 +1,7 @@
 package LinkedListClassNOTES;
 
 public class ReverseSingleSubList {
+
     private static class ListNode<T> {
         public T data;
         public ListNode<T> next;
@@ -50,7 +51,6 @@ public class ReverseSingleSubList {
 
     public static void main( String [] args ) {
         ListNode <Integer> head = new ListNode<> ();
-
 
 
     }

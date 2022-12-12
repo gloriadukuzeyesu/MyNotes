@@ -1,11 +1,8 @@
 package recursion;
 
-import java.util.List;
-
-public class RecursiveFunction {
+public class CountNodes {
     public static ListNode head_ = null;
     public static ListNode tail_ = null;
-
 
     public static class ListNode {
         int val;
@@ -16,21 +13,24 @@ public class RecursiveFunction {
             this.val = val;
             this.next = next;
         }
-    }
 
-    public static void addNode( int data ){
-        // create a new node
-        ListNode newNode = new ListNode(data);
-        if( head_ == null ){
-            head_ = newNode;
-            tail_ = newNode;
-        }else{
-            tail_.next = newNode;
-            tail_ = newNode; 
+        public  void addNode( int data ){
+            // create a new node
+            ListNode newNode = new ListNode(data);
+            if( head_ == null ){
+                // if listnode is empty, both head and tail will point to a new node
+                head_ = newNode;
+                tail_ = newNode;
+            }else{
+                // otherwise add it at the end of the tail. let the tail point to it and make the new node the new tail
+                tail_.next = newNode;
+                tail_ = newNode;
+            }
         }
     }
 
-    public static ListNode swapPairs(ListNode head){
+    public ListNode swapPairs(ListNode head){
+
         ListNode dummyhead = new ListNode(0);
         dummyhead.next = head;
         ListNode prevNode = dummyhead;
@@ -56,24 +56,30 @@ public class RecursiveFunction {
 
 
 
-
+    public void printNode(){
+        ListNode currentHead = head_;
+        if( head_ == null) {
+            System.out.println("list is empty");
+            return;
+        }
+        System.out.println("Nodes for singly linkedList");
+        while ( currentHead != null ){
+            // prints each node
+            System.out.print(currentHead.val + " -> " );
+            currentHead = currentHead.next;
+        }
+        System.out.println();
+    }
 
     public static void main( String [] args){
         System.out.println("hello");
+        ListNode newListNode = new ListNode();
 
-        ListNode list = new ListNode(1);
-        list.next = 2;
+        newListNode.addNode(1);
+        newListNode.addNode(2);
+        newListNode.addNode(3);
+        newListNode.addNode(4);
+        newListNode.addNode(3);
 
-        ListNode list1 = new ListNode(2);
-        ListNode list2 = new ListNode(3);
-        ListNode list3 = new ListNode(4);
-        list.next = list1;
-        list1.next = list2;
-
-
-        list.next = new ListNode(2);
-        list.next.next.next = new ListNode(3);
-        list.next.next.next.next = new ListNode(4);
-        System.out.println(list);
     }
 }
