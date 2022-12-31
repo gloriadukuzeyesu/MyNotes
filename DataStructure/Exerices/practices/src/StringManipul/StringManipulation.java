@@ -3,6 +3,7 @@ package StringManipul;
 import java.security.PublicKey;
 
 public class StringManipulation {
+
     public static int stringToInt(String s) {
         boolean isNegative = false;
         int result = 0;
@@ -64,7 +65,6 @@ public class StringManipulation {
         return result;
     }
 
-
     public static int replaceAndRemove(int size, char[] s){
         // forward iteration removes the b and counts all the a
         int writeIndex= 0, aCount=0;
@@ -79,12 +79,11 @@ public class StringManipulation {
         }
 
         // replace all a with two d
-
         int currentIndex = writeIndex - 1;
         writeIndex = writeIndex + aCount - 1;
         int finalSize = writeIndex + 1;
 
-        while ( currentIndex >=0 ){
+        while ( currentIndex >= 0 ){
             if(s[currentIndex] == 'a'){
                 s[writeIndex--] = 'd';
                 s[writeIndex--] = 'd';
@@ -144,4 +143,5 @@ public class StringManipulation {
 
         System.out.println(isPalidrome(longWord));
     }
+
 }

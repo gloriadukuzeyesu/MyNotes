@@ -4,9 +4,6 @@ import java.util.Set;
 
 public class Main {
 
-
-    // two dimension question
-    /* isValidSoduku leetCode question */
     public static boolean isValidSudoku(char[][] board) {
         Set seen = new HashSet();
         for (int i = 0; i < 9; i++) {
@@ -23,11 +20,9 @@ public class Main {
         }
         return true;
     }
-
     public static void main(String[] args) {
 
         /* Two dimensional Arrays */
-
         int[][] integers = {{3, 5, 7}, {10, 2, 9}};
 
         System.out.print(integers[0][0] + " ");
@@ -40,7 +35,7 @@ public class Main {
         System.out.print(integers[1][1] + " ");
         System.out.println(integers[1][2] + " ");
 
-        // consize way
+
         System.out.println("new method. printing row by row");
         // outer loop is the rows and the inner loop is the columns
         for (int i = 0; i < 2; i++) {
@@ -49,7 +44,6 @@ public class Main {
             }
             System.out.println();
         }
-
 
         System.out.println("printing column by column");
         // outer loop is for the columns and the inner loop is for the rows
@@ -62,9 +56,7 @@ public class Main {
 
         String twoDRepresation = Arrays.deepToString(integers);
         System.out.println(twoDRepresation);
-        
-/*        int [][] TwoArrray = getArray();
-        printArray(TwoArrray);*/
+
         System.out.println("Ragged array: array with rows with different length ");
 
         int[][] raggedArray = {
@@ -72,9 +64,6 @@ public class Main {
                 {5, 6},
                 {6, 7, 9, 0, 11}
         };
-
 //        printArray(raggedArray);
-
-
     }
 }

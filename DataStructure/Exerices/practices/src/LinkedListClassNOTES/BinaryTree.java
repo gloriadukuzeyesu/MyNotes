@@ -16,15 +16,12 @@ public class BinaryTree {
             left = right = null;
         }
     }
-
     // root of binary tree
     TreeNode root;
-
     // traverse the tree in inOrder
     public void inOrder(){
         inOrder(root);
     }
-
     private void inOrder(TreeNode node){
         if(node == null ){
             return;
@@ -34,10 +31,6 @@ public class BinaryTree {
         inOrder(node.right);
     }
 
-    /**
-     * Java  method that create binary tree with test
-     * @return a sample of binary tree for testing
-     * */
     public static BinaryTree create(){
         BinaryTree tree = new BinaryTree();
         TreeNode root = new TreeNode("40");
@@ -55,16 +48,33 @@ public class BinaryTree {
         return tree;
     }
 
+    /**
+     * @param arr  array to be reversed
+     * */
+    public static void  reverseTheString( char [] arr) {
+        int pointerOne = 0;
+        int pointerTwo = arr.length - 1;
 
-    public static void main( String [] args ){
-        BinaryTree bt = BinaryTree.create();
+        while ( pointerOne < pointerTwo) {
+            char temp = arr[pointerOne];
+            arr[pointerOne] = arr [pointerTwo];
+            arr[pointerTwo] = temp;
+            pointerOne++; // increment first pointer
+            pointerTwo--; // decrement second pointer
+        }
+    }
 
+    public static void main( String [] args ) {
+     /*   BinaryTree bt = BinaryTree.create();
         System.out.println("Printing nodes of the binary tree in InOrder using recursion ");
         bt.inOrder();
+        List<String> list = new ArrayList<>();*/
 
-        List<String> list = new ArrayList<>();
-
-
-
+       char [] arr = new char[] {'C', 'a', 't'};
+        reverseTheString(arr);
+        for(char c: arr) {
+            System.out.print(c + " ");
+        }
     }
+
 }
