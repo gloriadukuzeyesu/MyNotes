@@ -76,5 +76,4 @@ public class BinaryTree {
             System.out.print(c + " ");
         }
     }
-
 }

@@ -19,7 +19,6 @@ public class SortColors {
             }
         }
     }
-
     /**
      * Write an efficient algorithm that searches for a value target in an m x n integer matrix.
      * This matrix has the following properties :
@@ -29,7 +28,6 @@ public class SortColors {
      * @param target a value to find
      * @return true if target exists, and false if it doesn't exist
      */
-
     public static boolean searchAMatrix(int[][] matrix, int target) {
         // brute force would be to go over the whole matrix and find the target. However we've been told that
         // the matrix is sorted left to right and every element in each row is greater than the last interger in

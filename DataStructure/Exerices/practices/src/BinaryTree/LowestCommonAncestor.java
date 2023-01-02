@@ -9,8 +9,9 @@ public class LowestCommonAncestor {
         TreeNode left_;
         TreeNode right_;
 
-        TreeNode(){
+        TreeNode() {
         }
+
         TreeNode(int val){
             val_ = val;
         }
@@ -33,12 +34,14 @@ public class LowestCommonAncestor {
     }
 
     public static TreeNode lowestCommonAncestor( TreeNode p, TreeNode q, TreeNode root){
+
         if( root == null ){
             return null;
         }
         if( root.equals(p) || root.equals(q)){
             return root;
         }
+
         TreeNode left = lowestCommonAncestor(p,q,root.left_);
         TreeNode right = lowestCommonAncestor(p,q,root.right_);
 
