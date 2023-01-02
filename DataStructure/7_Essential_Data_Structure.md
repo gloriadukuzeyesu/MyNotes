@@ -78,9 +78,9 @@ for (String name : empoleeNames){
 
 **RECURSION** 
 
+A problem solving technique that is used to solved big problems into small problems by sliting the problem into small problems and solve those small problems, hence big problems. 
+
 a way of solving a problem by having a function call itself.   
-
-
 
 ### Hashset 
 
