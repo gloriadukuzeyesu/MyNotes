@@ -1,3 +1,8 @@
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 public class Exercises {
 
     public static String longestCommonPrefix(String[] strings) {
@@ -112,7 +117,24 @@ public class Exercises {
         return sb.toString();
     }
 
+    public static boolean twoSum (int[] array, int target) {
+        Set<Integer> set = new HashSet<>();
+        for (int j : array) {
+            int compliment = target - j;
+            if (set.contains(compliment)) {
+                System.out.println(compliment + " + " + j);
+                return true;
+            }
+            set.add(j);
+        }
+        return false;
+    }
+
     public static void main(String[] args) {
+        int[] arr = new int[]{4, 2, 6, 5, 2};
+        int K = 4;
+        System.out.println("The response is: " + twoSum(arr, K));
+
         String a = "11";
         String b = "1";
         var sum = sumOfBinaryString(a, b);
