@@ -1,6 +1,4 @@
-import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 public class Exercises {
@@ -8,7 +6,7 @@ public class Exercises {
     public static String longestCommonPrefix(String[] strings) {
         int index = 0;
         String longestCommonPrefix = ""; // response string to be returned
-        if (strings.length == 0 || strings == null) {
+        if (strings.length == 0) {
             return longestCommonPrefix;
         }
 
@@ -43,13 +41,9 @@ public class Exercises {
             return true;
         } else if (str.equals(str.toUpperCase())) {
             return true;
-        } else if (str.length() > 1 &&
+        } else return str.length() > 1 &&
                 Character.isUpperCase(str.charAt(0)) &&
-                str.substring(1).equals(str.substring(1).toLowerCase())) {
-            return true;
-        } else {
-            return false;
-        }
+                str.substring(1).equals(str.substring(1).toLowerCase());
 
     }
 
@@ -106,7 +100,7 @@ public class Exercises {
                 j--;
             }
 
-            sb.insert(0, sum % 2); // use insert instead of append. With appendd, you'd have to reverse the string at the end
+            sb.insert(0, sum % 2); // use insert instead of append. With append, you'd have to reverse the string at the end
             carry = sum / 2;
         }
         // in case there is a carry remaining at the end of the while loop. Add it to sb
@@ -117,7 +111,7 @@ public class Exercises {
         return sb.toString();
     }
 
-    public static boolean twoSum (int[] array, int target) {
+    public static boolean twoSum(int[] array, int target) {
         Set<Integer> set = new HashSet<>();
         for (int j : array) {
             int compliment = target - j;
@@ -134,24 +128,19 @@ public class Exercises {
         int[] arr = new int[]{4, 2, 6, 5, 2};
         int K = 4;
         System.out.println("The response is: " + twoSum(arr, K));
-
         String a = "11";
         String b = "1";
         var sum = sumOfBinaryString(a, b);
         System.out.println(sum);
-
-        String[] strs = new String[]{"flower", "flow", "flight"};
-        var strsResp = longestCommonPrefix(strs);
-        System.out.println(strsResp);
-
+        String[] string = new String[]{"flower", "flow", "flight"};
+        var stringResp = longestCommonPrefix(string);
+        System.out.println(stringResp);
         String str = "rWanda";
         var resp = CapitalizationCorrect(str);
         System.out.println(resp);
-
         String response = "USA";
         var response2 = isCapitalizationCorrect(response);
         System.out.println(response2);
-
         String firstString = "11";
         String secondString = "1";
         var response3 = sumOfBinaryString(firstString, secondString);
