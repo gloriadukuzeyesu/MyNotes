@@ -1,6 +1,5 @@
 package BinaryTree;
 
-import com.sun.source.tree.Tree;
 
 public class LowestCommonAncestor {
     // treeNode class
