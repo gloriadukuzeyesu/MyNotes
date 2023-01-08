@@ -124,7 +124,34 @@ public class Exercises {
         return false;
     }
 
+    /*
+    Given a string representing your stones and another
+     string representing a list of jewels,
+     */
+//    return the number of stones that you have that are also jewels*/
+
+
+    public static int numOfStonesThatAreInJewels(String stones, String jewels) {
+        Set<Character>set = new HashSet<>();
+        for(char c : jewels.toCharArray()) {
+            set.add(c);
+        }
+        int count = 0;
+        for(char c: stones.toCharArray()) {
+            if(set.contains(c)) {
+                count++;
+            }
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
+        String stones = "ayopd";
+        String jewels = "AYOPD";
+
+        var count = numOfStonesThatAreInJewels(stones, jewels);
+        System.out.println("num Of Stones That Are In Jewels " + count);
+
         int[] arr = new int[]{4, 2, 6, 5, 2};
         int K = 4;
         System.out.println("The response is: " + twoSum(arr, K));
