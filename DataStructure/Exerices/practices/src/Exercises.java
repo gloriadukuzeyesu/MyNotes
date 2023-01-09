@@ -1,4 +1,6 @@
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 public class Exercises {
@@ -160,10 +162,26 @@ public class Exercises {
         return true;
     }
 
+    public static int indexOfFirstUniqueCharacter(String str) {
+        Map<Character, Integer> map = new HashMap<>();
+        for(int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            map.put(c, map.getOrDefault(c,0) + 1);
+        }
+
+        for(int i = 0; i < str.length(); i++) {
+            if(map.containsKey(str.charAt(i)) && map.get(str.charAt(i)) == 1) {
+                return i;
+            }
+        }
+        return -1;
+
+    }
+
     public static void main(String[] args) {
-        String a = "program";
-        String b = "function";
-        var valid = isValidAnagram(a,b);
-        System.out.println(valid);
+        String string = "aabb";
+        var index = indexOfFirstUniqueCharacter(string);
+        System.out.println(index);
+
     }
 }
