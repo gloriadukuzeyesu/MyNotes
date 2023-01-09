@@ -145,32 +145,38 @@ public class Exercises {
         return count;
     }
 
+    public static boolean isValidAnagram(String a, String b) {
+        if(a.length() != b.length()) {
+            return false;
+        }
+        int[] charCounter = new int[26];
+
+        int x = 0, y = 0;
+        for(int i = 0; i < a.length(); i++) {
+            x = charCounter[a.charAt(i) - 'a'];
+            x++;
+            y = charCounter[b.charAt(i) - 'a'];
+            y--;
+        }
+
+
+        for(int count : charCounter) {
+            if(count != 0) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     public static void main(String[] args) {
-        String stones = "ayopd";
-        String jewels = "AYOPD";
+        String a = "aacc";
+        String b = "ccac";
+        var valid = isValidAnagram(a,b);
+        System.out.println(valid);
+        // s = "cat", t = "tac", return true
+        //s = "listen", t = "silent", return true
+        //s = "program", t = "function", return false
 
-        var count = numOfStonesThatAreInJewels(stones, jewels);
-        System.out.println("num Of Stones That Are In Jewels " + count);
 
-        int[] arr = new int[]{4, 2, 6, 5, 2};
-        int K = 4;
-        System.out.println("The response is: " + twoSum(arr, K));
-        String a = "11";
-        String b = "1";
-        var sum = sumOfBinaryString(a, b);
-        System.out.println(sum);
-        String[] string = new String[]{"flower", "flow", "flight"};
-        var stringResp = longestCommonPrefix(string);
-        System.out.println(stringResp);
-        String str = "rWanda";
-        var resp = CapitalizationCorrect(str);
-        System.out.println(resp);
-        String response = "USA";
-        var response2 = isCapitalizationCorrect(response);
-        System.out.println(response2);
-        String firstString = "11";
-        String secondString = "1";
-        var response3 = sumOfBinaryString(firstString, secondString);
-        System.out.println(response3);
     }
 }
