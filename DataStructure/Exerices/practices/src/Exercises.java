@@ -124,13 +124,11 @@ public class Exercises {
         return false;
     }
 
-    /*
-    Given a string representing your stones and another
-     string representing a list of jewels,
+    /**
+     * @param stones string representing stones
+     * @param jewels string representing jewels
+     * @return return the number of stones that are also jewels
      */
-//    return the number of stones that you have that are also jewels*/
-
-
     public static int numOfStonesThatAreInJewels(String stones, String jewels) {
         Set<Character>set = new HashSet<>();
         for(char c : jewels.toCharArray()) {
@@ -150,16 +148,10 @@ public class Exercises {
             return false;
         }
         int[] charCounter = new int[26];
-
-        int x = 0, y = 0;
         for(int i = 0; i < a.length(); i++) {
-            x = charCounter[a.charAt(i) - 'a'];
-            x++;
-            y = charCounter[b.charAt(i) - 'a'];
-            y--;
+            charCounter[a.charAt(i) - 'a']++;
+            charCounter[b.charAt(i) - 'a']--;
         }
-
-
         for(int count : charCounter) {
             if(count != 0) {
                 return false;
@@ -169,14 +161,9 @@ public class Exercises {
     }
 
     public static void main(String[] args) {
-        String a = "aacc";
-        String b = "ccac";
+        String a = "program";
+        String b = "function";
         var valid = isValidAnagram(a,b);
         System.out.println(valid);
-        // s = "cat", t = "tac", return true
-        //s = "listen", t = "silent", return true
-        //s = "program", t = "function", return false
-
-
     }
 }
