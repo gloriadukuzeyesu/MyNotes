@@ -178,10 +178,24 @@ public class Exercises {
 
     }
 
+    public static char letterAdded(String s, String t) {
+        char resp = ' ';
+        Set<Character> set = new HashSet<>();
+        for(char c: s.toCharArray()) {
+            set.add(c);
+        }
+        for(char c : t.toCharArray()) {
+            if(!set.contains(c)) {
+                resp = c;
+            }
+        }
+        return resp;
+    }
+
     public static void main(String[] args) {
-        String string = "aabb";
-        var index = indexOfFirstUniqueCharacter(string);
-        System.out.println(index);
+        String name = "ide";
+        String t = "idea";
+        System.out.println(letterAdded(name, t));
 
     }
 }
