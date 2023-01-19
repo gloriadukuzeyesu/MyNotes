@@ -1,7 +1,6 @@
 package ExercisesWithVenant;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Example {
 
@@ -17,9 +16,42 @@ public class Example {
         return false;
     }
 
+    /*
+    Given a string " Java is my favorite language "
+    could you write a program to count number of occurrences of each character?
+     */
+
+    public static void countCharacters (String str) {
+        // key -> character and value -> occurrence
+        Map<Character, Integer> map = new HashMap<>();
+        String newStr = str.replace(" ", ""); // O(n)
+
+        for (int i = 0; i < newStr.length(); i++) {
+            char c = newStr.charAt(i);
+            if(map.containsKey(c)) {
+                map.put(c, map.get(c) + 1);
+            } else{
+                map.put(c, 1);
+            }
+
+        }
+        System.out.println(map);
+    }
+
+    public static int countWords(String str) {
+        String[]  arr= str.split("my");
+
+        for(String xx : arr) {
+            System.out.println(xx);
+        }
+
+        return arr.length;
+    }
+
     public static void main(String[] args) {
-        int [] nums = new int[] {1,2,3,4,1};
-        var resp = containsDuplicate(nums);
-        System.out.println(resp);
+        String str = "Java is  my favorite my language my ";
+//        countCharacters(str);
+        var x = countWords(str);
+        System.out.println(x);
     }
 }
