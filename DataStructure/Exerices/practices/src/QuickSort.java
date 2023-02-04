@@ -5,7 +5,7 @@ public class QuickSort {
     public static void main(String[] args) {
         //  generationg a random numbers 
         Random rand = new Random();
-        int [] numbers = new  int[] { 3,5,6,1,-6}; // array with ten spaces
+        int[] numbers = new int[]{3, 5, 6, 1, -6}; // array with ten spaces
 //        int [] numbers = new  int[10];
 
       /*  for ( int i= 0; i< numbers.length; i++ ) {
@@ -13,7 +13,7 @@ public class QuickSort {
         }*/
         System.out.println("Before Quick Sorting");
         printArray(numbers); // print the  array  before sorting
-        
+
 //        quicksort(numbers, 0, numbers.length-1); // quick sort the array
         quicksort(numbers);
 
@@ -21,13 +21,14 @@ public class QuickSort {
         printArray(numbers);
     }
 
-    private static void quicksort(int [] array) {
-        quicksort(array, 0, array.length-1); // quick sort the array
+    private static void quicksort(int[] array) {
+        quicksort(array, 0, array.length - 1); // quick sort the array
 
     }
+
     private static void quicksort(int[] array, int lowIndex, int highIndex) {
         // base case . an array of just one number is already sorted
-        if ( lowIndex >= highIndex){
+        if (lowIndex >= highIndex) {
             return;
         }
 
@@ -41,7 +42,7 @@ public class QuickSort {
         // leftPointer here is the indexOf the Pivot after partitioning
 
         // recursively sort our left side later recursively sort the right side of the pivot
-        quicksort(array, lowIndex, leftPointer-1);
+        quicksort(array, lowIndex, leftPointer - 1);
         quicksort(array, leftPointer + 1, highIndex);
 
     }
@@ -49,19 +50,19 @@ public class QuickSort {
 
     // methods to choose pivot
 
-    public static int chooseFirstElementAsPivot(int[] array, int lowIndex, int highIndex){
+    public static int chooseFirstElementAsPivot(int[] array, int lowIndex, int highIndex) {
         int pivot = array[lowIndex];
-        swap(array,lowIndex, highIndex); // place it at the end. every code will proceed the same.
+        swap(array, lowIndex, highIndex); // place it at the end. every code will proceed the same.
         return pivot;
     }
 
-    public static int chooseLastElementAsPivot(int[] array, int lowIndex, int highIndex){
-       //1. the last element in the array
+    public static int chooseLastElementAsPivot(int[] array, int lowIndex, int highIndex) {
+        //1. the last element in the array
 //        int pivot = array[highIndex] ;
-        return array[highIndex] ;
+        return array[highIndex];
     }
 
-    public static int chooseRandomElementAsPivot(int[] array, int lowIndex, int highIndex){
+    public static int chooseRandomElementAsPivot(int[] array, int lowIndex, int highIndex) {
         // choosing the random index for the pivot in the array. Then swap it with the element at the last position. Everything should then proceed the same
         int randomPivotIndex = new Random().nextInt(highIndex - lowIndex) + lowIndex;
         int pivot = array[randomPivotIndex];
@@ -69,17 +70,18 @@ public class QuickSort {
         // with the random pivot choosing, the algorithm works better in the average case
         return pivot;
     }
+
     public static int chooseMedianAsPivot(int[] array, int lowIndex, int highIndex) {
         // put all elements in order
         // grab the element at index at array.length/2
         // swap with the rightMost element
         // return the pivot
         insertionSort(array);
-        int medianIndex = ( array.length + 1 ) / 2;
+        int medianIndex = (array.length + 1) / 2;
         int pivot = array[medianIndex];
-        swap(array ,medianIndex, highIndex);
+        swap(array, medianIndex, highIndex);
 
-        return pivot ;
+        return pivot;
     }
 
     private static void insertionSort(int[] array) {
@@ -97,14 +99,14 @@ public class QuickSort {
         * */
 
         int N = array.length;
-        for ( int i= 1; i<N; i++) {
+        for (int i = 1; i < N; i++) {
             int temp = array[i];
-            int j= i-1;
-            while( j>=0 && array[j] > temp) {
-                array[j+1] = array[j];
+            int j = i - 1;
+            while (j >= 0 && array[j] > temp) {
+                array[j + 1] = array[j];
                 j--;
             }
-            array[j+1] = temp;
+            array[j + 1] = temp;
         }
     }
 
@@ -121,7 +123,7 @@ public class QuickSort {
 
         //3. choose the first element in the array
         int pivot = array[lowIndex];
-        swap(array,lowIndex, highIndex); // place it at the end every code will proceed the same.
+        swap(array, lowIndex, highIndex); // place it at the end every code will proceed the same.
 
         return pivot;
     }
@@ -132,15 +134,15 @@ public class QuickSort {
         int leftPointer = lowIndex;
         int rightPointer = highIndex;
 
-        while ( leftPointer < rightPointer ) { // when right and left pointer is hit each other. knocks out of the loop
+        while (leftPointer < rightPointer) { // when right and left pointer is hit each other. knocks out of the loop
 
             // walk the left the pointer left to right until you find larger number than pivot  or when you hit the right pointer
-            while ( array[ leftPointer] <= pivot && leftPointer < rightPointer) {
+            while (array[leftPointer] <= pivot && leftPointer < rightPointer) {
                 leftPointer++;
             }
 
 
-            while ( array[rightPointer] >= pivot && leftPointer < rightPointer) {
+            while (array[rightPointer] >= pivot && leftPointer < rightPointer) {
                 rightPointer--;
             }
 
@@ -155,14 +157,14 @@ public class QuickSort {
     }
 
     // helper method will allow us to swap elements at which left and right pointers are pointing at
-    private static void swap ( int[] array, int index1, int index2 ) {
+    private static void swap(int[] array, int index1, int index2) {
         int temp = array[index1];
         array[index1] = array[index2];
         array[index2] = temp;
     }
 
     private static void printArray(int[] numbers) {
-        for ( int i : numbers) {
+        for (int i : numbers) {
             System.out.println(i);
         }
     }
