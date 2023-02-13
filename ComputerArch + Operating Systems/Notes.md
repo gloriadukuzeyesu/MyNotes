@@ -307,10 +307,10 @@ main:
 
 compilation flag to -O3 -std=c++17. 
 
-## PROCESS 
+# PROCESS 
 
 There is a difference between a process and a program. 
-a processs is an istance of a program 
+a processs is an instance  of a program 
 
 Each process has a state: 
 * new
@@ -324,9 +324,9 @@ In other words, instruction pointer holds the instruciton of what the process is
 
 Every hard Ware device has a state. Keyboard, mouse, etc...
 Thread is not  a process. 
-Process are isolated, and has its own control program. Thread run inside a process
+Process are isolated, and has its own PCB (Process Control Block). Thread run inside a process
 
-
+<img src="Notes/pcb.png" alt="Screen Shot 2023-02-04 at 2.09.26 PM" style="zoom:50%;" />
 
 Multithreading are faster than process. They solve two different issues. 
 
@@ -350,6 +350,21 @@ Write a program that calls.
 
 * `getpid()` returns the current process ID
 * `folk()` creates a new process
+
+
+
+## Typically  OS has 3 levels 
+
+1. User Level
+2. Kernel Level
+3. Hard Ware Level
+
+<img src="Notes/OS_Levels.png" alt="Screen Shot 2023-02-04 at 2.06.52 PM" style="zoom:50%;" />
+
+
+
+* To switch from User to kernel =>  You do traps such as Syscal
+* 
 
 
 
@@ -566,3 +581,46 @@ Virtual Address Space: located on PCB : **Process Control Block.**
   * Context Switch : actual mechanism of switching
 
 **NOTE**: if you are running the a program which is perfomence and time sensitive. Kill all programs that are running on the your machine. Reserve a fix hard ware. 
+
+
+
+
+
+
+
+Monday Feb 06
+
+Work Load: For
+
+
+
+## Scheduling 
+
+
+
+
+
+## PIPES
+
+Inter process communication. Data flows in a one direction. Can't send data from A and B at the same time. 
+
+Before forking you will create a pipe. 
+
+1. Create a pipe using pipe command
+2. Fork()
+3. now parent and child can read and write to the pipe
+4. ![Screen Shot 2023-02-08 at 9.15.47 AM](Notes/Screen%20Shot%202023-02-08%20at%209.15.47%20AM.png)
+
+the last step should be use read in the **child** to read from the pipe
+
+
+
+### few steps to keep in mind.
+
+1. pipe()
+
+2. fork ()
+
+3. exec() 
+
+   

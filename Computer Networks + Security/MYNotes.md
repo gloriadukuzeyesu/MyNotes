@@ -873,21 +873,163 @@ At each node, store the "distance vector"
 
 
 
+## **LINK LAYER: BroadCast** Channel 
+
+When many devices uses the same pysical channel for sending data, we call it broadcasting. 
+
+Weh two or more devices trynig to transimit simulatenously => collision, 
 
 
 
+### Goals
+
+* **Fairness** when multiple devices are transimitting 
+* If only 1 devices is transmitting, it should get all the transitmission time. **Good use of resources**
+* Protocol should not require extra data to be sent. **Simple**
 
 
 
+### Taking turns proctocol
+
+* Some nodes is in chase and assigns devices to get transom time. Nodes taking turns to eachother. Wait untile it is your turn. 
+
+* It is fair but inefficient when there is low load. because nodes 
+
+  
+
+  ### Slotted ALOHA**
+
+  ​	split and divide time into slots  and assume all device are synched. 
+
+  ​	if you want to transimit in the next slot, there might be collisions=> resend timeslot. But this would end in     	infinite. 
+
+  
+
+  * The more there is devices sending at the same time, the more there is high probality of collision. Flip coins to see which one sends first. 
+
+* Case1: send without collision first and try successful reset. Collission on resenf wasted slot. Everyone waiting. 
+
+  ### Unslotted ALOHA
+
+  * meets the goals
+  * Successful packet transimitted 50% down . becuause one node can interfere with two other nodes
+
+  
+
+## Carrier Sense Multiple Access CSMA
+
+* Avoid collision, listen for collisioin 
+* DOn't start transimit if someone else is transimitting 
+* Stop as soon as a collisioin is detected
+* More effecient one becase there is less collission
+* Uses commone sense. 
+* As collision detection time goes to 0, the % of used time goes upt to 100%
 
 
 
+## Cable Internet 
+
+* It is a broadcast channel 
+
+* CMTS -----------> shared among neighbor 
+
+  * Downloads are board cast and 1 transimitter (CMTS) but nothing as the collisions 
+  * Assume that CMTS Is always there 
+  * This is considered as Taking turn protocol 
+
+  
+
+  
+
+  
+
+# Ethernet, LANS
+
+We need a new way to identify devices at the Link layer. Which is caled **MAC address**. in bytes. Are also called pysical addressees. 
+
+**ARP**: Address Resolution protocol, Unlike  DNS message like who ask for Ip address ARP ask who has the IP address and it gets back mac address. 
+
+### Switch works:
+
+1. when to broadcats and it has a switching table where it keeps the MAc address anf the table link. 
+
+<img src="MYNotes/switches.png" alt="Screen Shot 2023-02-08 at 10.07.08 AM" style="zoom:50%;" />
 
 
 
+* switch *learns* which hosts can be reached through which interfaces
+
+* when frame received, switch “learns” location of sender: incoming LAN segment
+
+* records sender/location pair in switch table
 
 
 
+### HUB: Precessor to the switch. 
+
+it is like a switch but it always broadcast. 
+
+### Ethernet Protocol 
+
+* Hasn't changed  for 30 + years
+
+* cheap
+
+* Simpler, cheaper than token LANs and ATM
+
+* Checksum (CRC) => network layer tyep 
+
+* Interesting port 
+
+* Sendig adapter encapsulates IP datagram 
+
+* **Preamble:** 
+
+  	* 7 bytes with pattern 10101010 followed by one byte with pattern 10101011
+  	* It is alwats the same sequences  of 10101010
+  	* It is used to synchronize receiver, sender clock rates. 
+  	* Preamble is the ethernet header
+
+  <img src="MYNotes/ethernet%20frameStructure.png" alt="image-20230208100052100" style="zoom:50%;" />
+
+
+
+## **Switches vs Routers** 
+
+
+
+* switches are inneffective when the destination gets bigs
+
+  | Switches                    | Routers                                                      |
+  | --------------------------- | ------------------------------------------------------------ |
+  | Switching table 1 entry per | Forwarding table hierrachial with practices. Forwarding table have to be manually configured by software. |
+  | Tree topologies             |                                                              |
+  |                             |                                                              |
+
+  
+
+* What are the layers
+
+* WHat are the protocols involves
+
+* Tools involved 
+
+* Networks:
+
+  ​	* what happens to a packet when 
+
+
+
+# Network Security 
+
+##  Crypto
+
+1. Confidentiality : only sender, intended receriver should understand message contents
+    	*  Sender encrypts messages
+    	*  receiver decrypts message 
+2. message intergrity: not tampered 
+3. Authentications: :know who we are talking to. Example: Little Rock 
+4. No repudiation: no back sizes. 
 
 
 
