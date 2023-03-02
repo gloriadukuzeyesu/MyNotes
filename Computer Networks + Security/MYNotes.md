@@ -91,29 +91,27 @@ $$
 
 
 
-When there is no incoming trafic, the Traffic intensity of TI is 0. But when it goes up it shows that the queue will fill and packets will be dropped.
+When there is no incoming trafic, the Traffic intensity(TI) is  0. But when it goes up it shows that the queue will fill and packets will be dropped.
 
-* If the T i  >  1 : for a sustained period. Eventually QS will fill and Packets will be dropped 
+* If the TI >  1 : for a sustained period. Eventually QS will fill and Packets will be dropped 
 
 * TI < 1, Q are getting shorter. 
 
 * TI == 0, means there is no incoming traffic 
 
-  TI can't tell us the dealy time, but bsed on it we can predict that there will be a queue delay based on how the network is busy. 
+  TI can't tell us the dealy time, but based on it we can predict that there will be a queue delay based on how the network is busy. 
 
 Queue are like Buffer that hold data for a short of time. But they run of space easily.  
 
 ### What can we measure to figure out the delays and what the causes of those delays are. 
 
-Idealy, I would like to measure time it takes to transport data from one host to another. But this is a hard measurement to take. I could start from host 1 and time stamp the time I sent the packet, and on host2, I could check the current time. and find the difference to find the time it take. But this is a hard thing to measure. I will probaly not work. The clocks on both sides might not be in sync. it is hard to synchronize the clock on both hosts (computers). We can't use this method. 
+* Idealy, I would like to measure time it takes to transport data from one host to another. But this is a hard measurement to take. I could start from host 1 and time stamp the time I sent the packet, and on host2, I could check the current time. and find the difference to find the time it take. But this is a hard thing to measure. I will probaly not work. The clocks on both sides might not be in sync. it is hard to synchronize the clock on both hosts (computers). We can't use this method. 
 
+* What we can do: Host 1, Time stamp the time you sent the packet and time stamp when the packets comes back. That time is called **Round trip time RTT.** 
 
+* ICMP: send a ping and receive a pong and get the round time. 
 
-What we can do: Host 1, Time stamp the time you sent the packet and time stamp when the packets comes back. That time is called **Round trip time RTT.** 
-
-ICMP: send a ping and receive a pong and get the round time. 
-
-ping sends the simplest packet that you can to another host and get response from other  host  and it will telll you how long it took. 
+* ping sends the simplest packet that you can to another host and get response from other  host  and it will telll you how long it took. 
 
 **Basically you sent a ping and get back a pong and you can measure rount trip time.**
 
@@ -161,35 +159,19 @@ you send packet to the same host and get differnt RRT
 
 We can do this in case we want to know the information about the hops along the way. 
 
-Header has a **" time to lire the field**". Which is is the number of hops the packet can go. 
+Header has a **" time to LIVE the field**". Which is is the number of hops the packet can go. 
 
 Many devices send a respose when TTL hits o. How can we use this property to get intermediate response
 
-There is a tool built in called **Traceroute**. By default it sends 3 packts with TTL 1 towards host 
+There is a tool built in called **Traceroute**. By default it sends 3 packet with TTL 1 towards host 
 
 as it goes through one hop, the TTL increase by one until it gets to the host.
 
-Traceroute: a tool used to get these measurement. 
-
-Example 
-
-
+`Traceroute` a tool used to send packet and get the measuremnt of the RTT of any packets that gets a response
 
 If you get strars *** it means you are not getting a response. 
 
 
-
-
-
-
-
-Throughout + Bottleness
-
-Throughout [bits/sec] capacity between hots 
-
-instantenous overuse/sustained 
-
-BottleNeck
 
 
 
@@ -444,7 +426,7 @@ Client-> server: syn sequence
 ### Send Buffer
 
 * filled by app layer
-* TCP uses pipleining 
+* TCP uses pipelinging  
 * Window size changes 
 
 ### Receiver buffer 
@@ -869,6 +851,10 @@ At each node, store the "distance vector"
 
 ### Network of Network. 
 
+NAT is a process in which one or more local IP address is translated into one or more Global IP address and vice versa in order to procide internet access to the local hosts. 
+
+NAT goal is to translate a set of IP address into another IP address. 
+
 
 
 
@@ -1035,29 +1021,124 @@ it is like a switch but it always broadcast.
 
 
 
+Cryptographyically secure is a peusedo random numver generator. It is to be unpredictable and not random. 
 
 
 
+## RC4 encryption algorithm (not good enough but simple to implement)
+
+RC4 is an examoke of the alogarithm you can use. 
+
+"RC4 stands for Ron's Code" by Ron Rivest
+
+### 2 steps for this program
+
+1. #### Initialization step: 
+
+   ​		Takes a key and shuffles internal state based on that key. 
+
+2. #### Generation:
+
+   ​		Byte nextbyte() 
+
+   
+
+## Internal state
+
+consits of an array of bytes. fomr 0 - 255. And they are shuffled. and we have two indices, i and j keeping track of current of position. 
+
+### Step1: initialization 
+
+s [0,1,2,4,5........255] 
+
+j = 0 for i = 0 ....255
+
+```java
+j = ( j _ s[i] + key[i % length]) % 256 
+  then swap, swap (s{i}, s[j])
+```
+
+### **step 2:** generation 
+
+```java
+byte bextbyte()
+  i++
+  j += s[i] % 256 
+  swap (s[i], s[j])
+  ouput = (s[i] + s[j] % 256) //hides teh internal state. This gives the property which is hard to tell the key. 
+```
 
 
 
+### Downside of this alogarithm 
+
+* if your key is weak. Then the initial shuffle will not be good. The first few bytes tha comes from the ouput, you can tell what the key was. 
+
+https://www.educative.io/answers/how-does-an-rc4-encryption-algorithm-work
+
+## Chacha 20 encryption algorithm
 
 
 
+Modern Stream cipher
+
+It has three inputs to "init"
 
 
 
+## Block Cipher 
+
+* confidential 
+
+* Used in many security 
+
+  https://www.techtarget.com/searchsecurity/definition/block-cipher
+  
+* Encription works on fixed size of size known as a block 
+
+* ### 3 main parts. 
+
+  * Keygen : Accepts a security paramter K and out puts a random K-bit key. 
+  * Encrypt : accepts a b-bit plain text and K-bit key and outputs a **b-bit cipehr text.** 
+  * Decrypt : Does the opposite of encrypt. Accepts **a b-bit cipher text a**nd **k -bit** **key** and outputs a **b-bit plain text.** 
+  * 
+
+## Bit flipping attack 
 
 
 
+## Stream Cypher
 
 
 
+## Crypto Hash 
 
+gives the fixed size of whatever is sticked in the hash
 
+encry our communication
 
+## DH Hellmen
 
+*  Share secret
 
+## RSA
 
+* Sign / Encrypt 
+* Use when taling to banks
 
+# Crypto System 
+
+Authentication 
+
+* Use certifcate signature signs 
+
+* If not trusted, get more trusted signture
+
+* Sinegd public key . Extra info about the owner of private key 
+
+  
+
+## Mutual Authentication
+
+**Shared Secret** (
 

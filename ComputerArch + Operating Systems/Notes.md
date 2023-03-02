@@ -623,4 +623,56 @@ the last step should be use read in the **child** to read from the pipe
 
 3. exec() 
 
-   
+
+// nOTES
+Set up the 
+
+
+
+### **Virtualization memory**
+
+HW
+
+* When you open the new fd in dup, the old one will silently close 
+* When you dup2, the old one are gone. Create a new array of file descriptor 
+
+Static relocation and Dyanmic reloctaion 
+
+PAGING
+fixed fixed size of 4K chunks!
+
+
+
+## Page Replacement
+
+Victim replacement
+
+* OPT : Replace page not usd  for longer time in the future. Not effectienty, and not practice 
+
+* FIFO: Replace the page in the memory that's been in the memory longer regardless of how recently it was accessed. 
+
+* LRU(Least Reclty used): replace page not used for longer time in the past
+
+* Least Frenquently used. 
+
+* **CLOCK alogarithm**: the practical alogarithm. Use the bits to identify those has not been recelty used. And remove those page to kickt them out. Refer Class PPT.
+
+  Like advancing a clock hand through the pages.
+
+  ```
+  if (R == 0)
+      replace
+  else
+      reset R
+      advance hand
+  ```
+
+A clock hand points to some particular page to begin with (it doesn’t really matter which). When a replacement must occur, the OS checks if the currently-pointed to page P has a use bit of 1 or 0. If 1, this implies that page P was recently used and thus is not a good candidate for replacement. Thus, the use bit for **P is set to 0 (cleared)**, and the clock hand is incremented to the next page (P + 1). 
+
+**Reference**. 
+http://web.cs.wpi.edu/~cs3013/b00/week5-pagereplace/week5-pagereplace.html
+
+
+
+
+
