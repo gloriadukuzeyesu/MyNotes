@@ -1142,3 +1142,89 @@ Authentication
 
 **Shared Secret** (
 
+## RC4 Implementation in c++
+
+```c++
+#include <array>
+#include <algorithm>
+
+class RC4 {
+public:
+    RC4(const std::array<uint8_t, 8>& key) : internalState{}, keyStream{} {
+        // initialization
+        for (int i = 0; i < 256; i++) {
+            internalState[i] = i;
+        }
+
+        int j = 0;
+        int i;
+
+        for (i = 0; i < 255; i++) {
+            j = (j + internalState[i] + key[i % key.size()]) % 256;
+            std::swap(internalState[i], internalState[j]);
+        }
+
+        j = 0;
+        // generate the next byte
+        for (i = 0; i < keyStream.size(); i++) {
+            i++;
+            i = i % 256;
+            j = j + internalState[i] % 256;
+            std::swap(internalState[i], internalState[j]);
+            keyStream[i] = internalState[(internalState[i] + internalState[j]) % 256];
+        }
+    }
+
+    std::array<uint8_t, 8> encrypt(const std::array<uint8_t, 8>& plainTextBeforeEncryption) {
+        std::array<uint8_t, 8> cipherText{};
+
+        // encryption
+        for (int k = 0; k < plainTextBeforeEncryption.size(); k++) {
+            cipherText[k] = plainTextBeforeEncryption[k] ^ keyStream[k];
+        }
+
+        return cipherText;
+    }
+
+    std::array<uint8_t, 8> decrypt(const std::array<uint8_t, 8>& cipherText) {
+        std::array<uint8_t, 8> plainText{};
+
+        // decryption
+        for (int k = 0; k < cipherText.size(); k++) {
+            plainText[k] = cipherText[k] ^ keyStream[k];
+        }
+
+        return plainText;
+    }
+
+private:
+    std::array<uint8_t, 256> internalState{}; // internal internalState
+    std::array<uint8_t, 256> keyStream{}; // keystream
+};
+
+```
+
+```c++
+// create an instance of the RC4 cipher with the given key
+RC4 rc4("my secret key");
+
+// create two plaintext messages
+std::string message1 = "Hello world!";
+std::string message2 = "Goodbye cruel world!";
+
+// encrypt the messages using the same keystream
+std::vector<uint8_t> ciphertext1 = rc4.encrypt(message1);
+std::vector<uint8_t> ciphertext2 = rc4.encrypt(message2);
+
+// XOR the two ciphertexts to see the result
+std::vector<uint8_t> xored = xor_vectors(ciphertext1, ciphertext2);
+
+// print the result
+std::cout << "XORed ciphertexts: ";
+for (uint8_t c : xored) {
+    std::cout << std::hex << (int)c << " ";
+}
+std::cout << std::endl;
+
+```
+
