@@ -1228,3 +1228,47 @@ std::cout << std::endl;
 
 ```
 
+# Session Keys, TLS
+
+A session key is a key used for a session. We are going to pick it when we communicate and when logged in again you change to a different key. 
+
+Different Keys for different session. Very important because if one key is leaked only 1 key session is compromised. Reuse the same key gives attacker losts of cipher text to analyse. 
+
+Point 2 is related to a concept called **perfect forward secrecy**. We generally want to guarantee that even if an attacker gains access to all transmitted messages, and all secrets that are stored long term (ie, on disk, not temporally stored in RAM), they STILL cannot decrypt old conversations.
+
+Perfect Forward secrecy if all comms are logged and both sides are later compromised. Attacker can not decrypt and proviously encrypted message. 
+
+**If the key is long lived, it means it is stored on disk.** This is a pysical aspect of it.  
+
+Choices of Session Key. What are the properties of 
+
+* Bad if it reveals the long lived key
+* Bad because it shared with both ends. Not a secret any more. EX: f(R,K_AB). BCZ Alice sends to Bob
+* f(R+1., K_AB) a secret. 
+
+
+
+# Transport Layer Security  TLS
+
+Transport Layer Security (TLS) is the protocol used to communicate securly on the internet (HTTPS among other things).
+
+It has 2 parts
+
+1. a handshake that establishes any necessary session keys (and agreement about which ciphers to use),
+
+2.  record format (for actually sending data).
+
+   
+
+
+
+# **Code Injection** 
+
+family of Vurnability 
+
+SQL. 
+
+* Whenever we treat user input as "code"
+* SQl is a very comment way to  combine the userinput with other code, 
+
+SQL 

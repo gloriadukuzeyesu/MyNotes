@@ -674,5 +674,94 @@ http://web.cs.wpi.edu/~cs3013/b00/week5-pagereplace/week5-pagereplace.html
 
 
 
+# Virtual Memory 
 
+Virtual memory us a memory managment technique that allows a computer to use more memory than it pyshyically has available. It does this by using a combination of RAM and disk space to store data. Each process running on a computer has its own virtual memory address space and it can use to store data. 
+
+
+
+The `mmap` system call takes a number of parameters, including the starting address of the memory address of the memory region to allocate, the size of the region and flags that control the access permissions for the memory region. The function returns a pointer to the allocated memory region of -1 if an error occurs. 
+
+
+
+The `munmap` system call takes a pointer to a memory region and the size of the region to deallocate. It frees the memory region and returns `0` on sucess or `-1` if an error occurs. 
+
+
+
+## STEPS to Write my own Malloc
+
+1. Familiarize yourself with the concept of virtual memory allocation and deallocation, as well as the mmap and munmap system calls in C/C++.
+
+2. Create a new C++ class that includes two public methods named allocate and deallocate, which are drop-in replacements for malloc and free, respectively.
+
+3. Implement the allocate method to:
+
+   a. Round .
+
+   b. Call mmap to allocate memory.
+
+   c. Insert the returned pointer and the allocation size in the hash table.
+
+4. Implement the deallocate method to:
+
+   a. Retrieve the allocation size from the hash table using the pointer.
+
+   b. Call munmap to deallocate memory.
+
+   c. Remove the pointer and allocation size from the hash table.
+
+5. Implement a probing-based hash table with a lazy delete strategy to store the allocation sizes and pointers.
+
+6. Implement a hash function that converts a pointer to an integer.
+
+7. Implement a growhashtable function that grows the hash table when necessary.
+
+8. Implement unit tests to verify that your allocator works correctly and does not cause memory overlap or crashes.
+
+9. Implement microbenchmarks to compare the performance of your allocator with the built-in malloc function.
+
+10. Use mmap to allocate memory for the hash table, rather than malloc or new.
+
+11. Document your code and provide clear instructions on how to run your tests and benchmarks.
+
+```
+TEST(MallocTest, Deallocate) {
+  Malloc allocator;
+  void *block = allocator.allocate(1024);
+  ASSERT_NE(nullptr, block);
+
+  allocator.deallocate(block);
+  HashTableEntry *entry = allocator.hashTable_.find(block);
+  ASSERT_EQ(nullptr, entry);
+}
+
+
+TEST(MallocTest, DeallocateLazyDelete) {
+  Malloc allocator;
+  void *block1 = allocator.allocate(1024);
+  ASSERT_NE(nullptr, block1);
+  void *block2 = allocator.allocate(2048);
+  ASSERT_NE(nullptr, block2);
+
+  allocator.deallocate(block1);
+
+  // Check that block1 was not actually deallocated
+  HashTableEntry *entry = allocator.hashTable_.find(block1);
+  ASSERT_NE(nullptr, entry);
+  ASSERT_TRUE(entry->isDeleted_);
+
+  // Allocate again and check that block1 is reused
+  void *block3 = allocator.allocate(1024);
+  ASSERT_EQ(block1, block3);
+}
+
+```
+
+
+
+## LOCKS
+
+### Ticket Locks
+
+Provides fairness among threads to use the lock. Provide the locks gets released, all thread get the chance to get the lock. 
 
