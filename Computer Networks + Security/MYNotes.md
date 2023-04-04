@@ -1266,9 +1266,50 @@ It has 2 parts
 
 family of Vurnability 
 
-SQL. 
+### **SQL Injections** 
 
 * Whenever we treat user input as "code"
-* SQl is a very comment way to  combine the userinput with other code, 
+* SQL is a very comment way to  combine the userinput with other code, 
 
-SQL 
+
+
+Most of SQL injection happens in the following statement 
+
+* UPDATE 
+* INSERT
+* SELECT
+* ORDER BY  [SQLinjectionExplained](https://portswigger.net/web-security/sql-injection#:~:text=SQL%20injection%20(SQLi)%20is%20a,not%20normally%20able%20to%20retrieve)
+
+### **How to avoid SQL injection**
+
+* Avoid concanting the input. Use parameterize query. Use prepared statement so the attacker can't alter the inputs. 
+
+  
+
+## Side Channel Attack
+
+A side-channel attack is a security exploit that aims to gather information from or influence the program execution of a system by measuring or exploiting indirect effects of the system or its hardware -- rather than targeting the program or its code directly. 
+
+Attackers takes advantage of the program leaks and compute the data from the program. 
+
+
+
+Factors that contributes to increase of side channel attacks
+
+* Increasing sensitivity of measuring equipment has made it possible to gather extremely detailed data about a system while it is running.
+* greater computing power and [machine learning](https://www.techtarget.com/searchenterpriseai/definition/machine-learning-ML) enable attackers to better understand the raw data they extract. This deeper understanding of targeted systems enables attackers to better exploit subtle changes in a system.
+
+<img src="MYNotes/Screen%20Shot%202023-04-04%20at%2012.06.27%20PM.png" alt="Screen Shot 2023-04-04 at 12.06.27 PM" width="500" heigth="500"/>
+
+
+
+## Types of Side Channel Attacks
+
+1. Electro magnetics : An attacker measures the electromagnetic radiation, or radio waves, given off by a target device to reconstruct the internal signals of that device.
+2. Acoustic: 
+3. Power: 
+4. Optical
+5. Timing : Getting the timing of the function takes to run and extract important information from it
+6. Hardware weakness [Sidechannel](https://www.techtarget.com/searchsecurity/definition/side-channel-attack)
+7. Memory cache : An attacker abuses memory cache to acces info.
+8. 

@@ -465,5 +465,16 @@ jobs:
 
 
 
-March 13th 2023
+## **Optimization**
+
+* Solve problems that needs to be solved
+* Design classes and routines. This steps you would consider choosing the best data structures whihc is necessary. Ex: Choosing Quick sort, or merge sort, or binary search. Dedending on your needs. 
+
+
+
+Main 3 topics
+
+1. Code motion: moving expression from place to place 
+2. Strength reduction 
+3. Sharing common results (it involves elimination )
 
