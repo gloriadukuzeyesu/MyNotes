@@ -1266,7 +1266,7 @@ It has 2 parts
 
 family of Vurnability 
 
-### **SQL Injections** 
+## **SQL Injections** 
 
 * Whenever we treat user input as "code"
 * SQL is a very comment way to  combine the userinput with other code, 
@@ -1288,7 +1288,7 @@ Most of SQL injection happens in the following statement
 
 ## Side Channel Attack
 
-A side-channel attack is a security exploit that aims to gather information from or influence the program execution of a system by measuring or exploiting indirect effects of the system or its hardware -- rather than targeting the program or its code directly. 
+A side-channel attack is a security exploit that aims to gather information from or influence the program execution of a system by measuring or exploiting indirect effects of the system or its hardware -- rather than targeting the program or its code directly.  **Leaking data**
 
 Attackers takes advantage of the program leaks and compute the data from the program. 
 
@@ -1312,4 +1312,125 @@ Factors that contributes to increase of side channel attacks
 5. Timing : Getting the timing of the function takes to run and extract important information from it
 6. Hardware weakness [Sidechannel](https://www.techtarget.com/searchsecurity/definition/side-channel-attack)
 7. Memory cache : An attacker abuses memory cache to acces info.
-8. 
+
+
+
+## Denial of Services
+
+ A **Denial-of-Service (DoS) attack** is an attack meant to shut down a machine or network, making it inaccessible to its intended users. Getting program not to do something it should
+
+* Usually overwhelm system with request to block legitimate requests 
+
+* Easier and cheaper to send requests then produce responses 
+
+  
+
+  ##### **Example**: Call fork() inside a while loop
+
+  PCB -> can run out of pid's 
+
+* The scheduler is responsible for keeping track of process collection data structure PCB. If there are many the scheduler will be overwhelemened process collection datat structure got fill 
+
+These attack happens over the network. 
+
+* **Botnet**: collection of compromised internted connected devices on  by attacker. The best know Botnet is Micai IOT devices. Internet of things. (IOT)
+
+
+
+### Transport Layer 
+
+* TCP SYN spooting 
+* Handshake 
+
+### APP Layer: HTTP
+
+parsing header. 
+
+while (is not the end of line) {} 
+
+To catch this, add a timeout,  for long time
+
+**Slowlaosis.** 
+
+* Makes up sends HTTP header periodically 
+
+* Exhausts threads/opne file descriptionrs 
+
+  
+
+### DNS protocol 
+
+DNS + indirection 
+
+* make DNS request spooot my IP 
+* Put Vivitim IP in src fiedl 
+* Traffic is amplied hide attacker ID
+
+Defense
+
+* Buy more connectors
+* fish IP sprofing
+* traffic classification, legitimate vs malicosu 
+* TCP 
+
+
+
+## FireWall 
+
+form of security that Blocks access. All traffic from outside to inside, and vice versa, passes through the firewall. 
+
+Firewalls are implemented in routers and  controlled remotely using SDN
+
+![Screen Shot 2023-04-07 at 9.36.29 AM](MYNotes/Screen%20Shot%202023-04-07%20at%209.36.29%20AM.png)
+
+### **Network transport**
+
+* Device that comes in tis packets and it has to decide wehter to drop or forward based on the policy 
+* Filtering decisions are typically based on: 
+  * Examining IP header. src and dest Ip address
+  * Port Numbers; Give more control, bcz they tell you the about the traffic 
+
+### How to build a policy ? 
+
+* Public web server, listening on 80,443
+* Allow packets to WS IP, on port 80,443
+* Drop all other incoming Packets
+* Allow Packets to portts > 1024 to all IPs
+* TCP flag bits: SYN, ACK, and so on. The first message that get send has a SYNC
+* All the above works with TCP not with UDP
+* With UDP
+  	* keep track of IP s and Port
+
+
+
+## **Two popular defence mechanism**
+
+* ### **Packet filter firewalls** (usually stateless, packet examined independently)
+
+* ### **Deep packet inspections:  e**xamining not only header fields but also the payloads in the datagram (including application-layer data). SInce most otraffic is now encrypted. 
+
+
+
+## Application Proxy FireWalls
+
+* Require configurations
+* Ex: Web surfing 
+
+### Circuit Level gateways
+
+
+
+**Host Firewalls** 
+
+
+
+
+
+HOST
+
+
+
+
+
+### **App layer:** 
+

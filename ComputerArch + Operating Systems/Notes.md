@@ -765,3 +765,39 @@ TEST(MallocTest, DeallocateLazyDelete) {
 
 Provides fairness among threads to use the lock. Provide the locks gets released, all thread get the chance to get the lock. 
 
+
+
+# Lect 24**Locked Data Structure** 
+
+what does it take to make a thread safe data structure? 
+
+1. Coarse gained locking is better for us engineers. 
+
+
+
+# **Lect25. DeadLock and Concurrency Bugs** 
+
+
+
+Examples of bugs
+
+1. Atomicity :MySQL 
+2. Mozilla ordering. When ordering matters between threads, condition variables (or semaphores) can come to the rescue.
+
+
+
+## Dead lock
+
+Happends between of introducing locks. 
+
+![Screen Shot 2023-04-05 at 9.14.33 AM](Notes/Screen%20Shot%202023-04-05%20at%209.14.33%20AM.png)
+
+![Screen Shot 2023-04-05 at 9.14.20 AM](Notes/Screen%20Shot%202023-04-05%20at%209.14.20%20AM.png)
+
+
+
+##  Concurrent Queues by  Michael and Scott [MS98]
+
+There two locks is to enable concurrency of enqueue and dequeue operations. In the common case, the enqueue routine will only access the tail lock, and dequeue only the head lock.
+
+
