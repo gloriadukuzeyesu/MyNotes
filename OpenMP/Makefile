@@ -9,7 +9,8 @@ pro: main.cpp
 
 .PHONY: clean
 clean:
-	rm -rf *.o  pro
+	rm -rf *.o  pro project
+
 
 #CC = gcc
 #CFLAGS = -Wall -Wextra -std=c99 -fopenmp
