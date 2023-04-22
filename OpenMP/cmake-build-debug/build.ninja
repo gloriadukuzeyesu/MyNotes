@@ -48,7 +48,7 @@ build cmake_object_order_depends_target_OpenMP: phony || CMakeFiles/OpenMP.dir
 
 build CMakeFiles/OpenMP.dir/main.cpp.o: CXX_COMPILER__OpenMP_Debug /Users/gloriadukuzeyesu/Remote/MSD/MyNotes/OpenMP/main.cpp || cmake_object_order_depends_target_OpenMP
   DEP_FILE = CMakeFiles/OpenMP.dir/main.cpp.o.d
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fcolor-diagnostics -std=gnu++17
+  FLAGS = -fopenmp -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk -fcolor-diagnostics -std=gnu++17
   OBJECT_DIR = CMakeFiles/OpenMP.dir
   OBJECT_FILE_DIR = CMakeFiles/OpenMP.dir
 
@@ -61,7 +61,7 @@ build CMakeFiles/OpenMP.dir/main.cpp.o: CXX_COMPILER__OpenMP_Debug /Users/gloria
 # Link the executable OpenMP
 
 build OpenMP: CXX_EXECUTABLE_LINKER__OpenMP_Debug CMakeFiles/OpenMP.dir/main.cpp.o
-  FLAGS = -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
+  FLAGS = -fopenmp -g -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX12.3.sdk
   OBJECT_DIR = CMakeFiles/OpenMP.dir
   POST_BUILD = :
   PRE_LINK = :

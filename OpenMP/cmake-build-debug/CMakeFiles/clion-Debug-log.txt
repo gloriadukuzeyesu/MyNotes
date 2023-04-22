@@ -2,3 +2,6 @@
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /Users/gloriadukuzeyesu/Remote/MSD/MyNotes/OpenMP/cmake-build-debug
+
+Problems were encountered while collecting compiler information:
+	clang: [0;1;31merror: [0m[1munsupported option '-fopenmp'[0m

@@ -79,3 +79,23 @@ while (num_threads > 0) {
 
 
 
+variables A= 1, B= 1, C= 1
+
+#pragma omp parallet private(B first) firstPrivate(C)
+
+* firstPrivate means each threads gets its own copy 
+* Private means that each threads gets its own copy of B. except that B is an initialized. 
+* A is initialized. 
+* Shared last private, means whatever threads with - 1 ID 
+
+
+
+Parallel means that you divide the work into different threads. 
+
+#pragma opm paraller means creating threads. 
+
+#pragma amp task means assigining one thread one job. 
+
+#pragma opm taskwait means 
+
+first private: means let every thread have its own copy. 
