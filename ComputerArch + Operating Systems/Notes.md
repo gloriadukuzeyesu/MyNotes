@@ -801,3 +801,71 @@ Happends between of introducing locks.
 There two locks is to enable concurrency of enqueue and dequeue operations. In the common case, the enqueue routine will only access the tail lock, and dequeue only the head lock.
 
 
+
+
+
+# Intro To Parallelism 
+
+
+
+```c++
+#include <iostream>
+#include <chrono>
+#include <thread>
+#include <vector>
+
+template<typename T>
+auto parallel_sum_std(T a[], size_t N, size_t num_threads) {
+    // Initialize the sum variable
+    std::atomic<T> sum(0);
+
+    // Define a function for the worker threads to compute the sum of their assigned chunk
+    auto sum_chunk = [&](size_t start, size_t end) {
+        T local_sum = 0;
+        for (size_t i = start; i < end; ++i) {
+            local_sum += a[i];
+        }
+        sum += local_sum;
+    };
+
+    // Define the chunk size
+    size_t chunk_size = N / num_threads;
+
+    // Create a vector to hold the threads
+    std::vector<std::thread> threads;
+
+    // Start the timer
+    auto start_time = std::chrono::steady_clock::now();
+
+    // Create the worker threads
+    for (size_t i = 0; i < num_threads; ++i) {
+        size_t start = i * chunk_size;
+        size_t end = (i == num_threads - 1) ? N : (i + 1) * chunk_size;
+        threads.emplace_back(sum_chunk, start, end);
+    }
+
+    // Join the worker threads
+    for (auto& thread : threads) {
+        thread.join();
+    }
+
+    // Compute the time taken to calculate the sum
+    auto end_time = std::chrono::steady_clock::now();
+    auto duration = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+
+    // Return the sum and the time taken to calculate it
+    return std::make_pair(sum.load(), duration.count());
+}
+
+int main() {
+    int a[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+    size_t N = sizeof(a) / sizeof(a[0]);
+    size_t num_threads = 4;
+    auto result = parallel_sum_std(a, N, num_threads);
+    std::cout << "Sum: " << result.first << std::endl;
+    std::cout << "Time taken: " << result.second << " microseconds" << std::endl;
+    return 0;
+}
+
+```
+

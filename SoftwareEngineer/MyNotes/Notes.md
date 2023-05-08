@@ -478,3 +478,16 @@ Main 3 topics
 2. Strength reduction 
 3. Sharing common results (it involves elimination )
 
+# Agile
+
+Technique used in Real world for team to collaborate. 
+
+
+
+## The scrum team
+
+* The product owner 
+
+  Fork means creating instacne of the repo
+
+  

@@ -4,7 +4,7 @@
 
 #include "Stack.h"
 
-void Stack::push(Stack::Node *in) {
+void Stack::push(Node *in) {
     Node *expectedNode;
     do {
         expectedNode = head;
@@ -13,11 +13,22 @@ void Stack::push(Stack::Node *in) {
 
 }
 
-bool Stack::CAS(Stack::Node **ptr, Stack::Node *expected, Stack::Node *newNode) {
+void Stack::pop() {
+    Node *ret;
+    Node *nextNode;
+    do {
+        ret = head;
+        nextNode = ret->next;
+    } while (!CAS(&head, ret, nextNode));
+}
+
+bool Stack::CAS(Node **ptr, Node *expected, Node *newNode) {
     if (*ptr == expected) {
         *ptr = newNode;
         return true;
     }
     return false;
 }
+
+
 

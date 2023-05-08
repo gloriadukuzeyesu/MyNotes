@@ -20,9 +20,9 @@ ignore Session and presentation just for now . everything Above Transport layer,
 
 * Application Layer : Application specific protocol  HTTP SMTP IMAP DNS
 
-* Transport Layer : process to process TCP, UDP
+* Transport Layer : process to process TCP, UDP. Bonus things TCP => reliable transportation , TLS secure netwwork 
 
-* Network : host to host. Internet protocol. This means like my laptop being connected to google. It differs from link layer  
+* Network : host to host. Internet protocol. This means like my laptop being connected to google. It differs from link layer. Routing accross the internet. 
 
 * Link : one hop communication. Two devices that are connected together. Connected next each other in the path. 
 
@@ -173,9 +173,7 @@ If you get strars *** it means you are not getting a response.
 
 
 
-
-
-**Transportation Layer**
+### **Transportation Layer**
 
 TCP/UDP : Socket interface 
 
@@ -187,7 +185,7 @@ UDP interface is avery thing addition to network layer. You can send an receive 
 
 
 
-TLS: encryption. 
+### TLS: encryption. 
 
 QUIC: is a new network layer developed by google. 
 
@@ -222,7 +220,24 @@ HTTP protocol
 * Content length header: explict size info 
 * Specaial characters `\n`  and space characters `'' ` and `:`  in the header 
 
+## Network Progamming
 
+* Socket Classes
+* Datagram 
+
+### Common Protocol 
+
+* UDP
+
+* TCP
+
+* ARS
+
+* HTTP
+
+* ARP Link/network : little bit like TCP but uses Mac address
+
+  
 
 ## **2 protocols related to Email**
 
@@ -1019,8 +1034,6 @@ it is like a switch but it always broadcast.
 
 
 
-
-
 Cryptographyically secure is a peusedo random numver generator. It is to be unpredictable and not random. 
 
 
@@ -1084,9 +1097,11 @@ Modern Stream cipher
 
 It has three inputs to "init"
 
+# TOOLS
 
+1. 
 
-## Block Cipher 
+## 1. Block Cipher 
 
 * confidential 
 
@@ -1124,7 +1139,13 @@ encry our communication
 ## RSA
 
 * Sign / Encrypt 
+* Signatures or encryption 
+* If I sign something with my private key it can be decrypted using m public key 
 * Use when taling to banks
+
+## Hash Function         
+
+* H(X) == H(y) -> x == y
 
 # Crypto System 
 
@@ -1255,12 +1276,11 @@ Transport Layer Security (TLS) is the protocol used to communicate securly on th
 It has 2 parts
 
 1. a handshake that establishes any necessary session keys (and agreement about which ciphers to use),
+2. record format (for actually sending data).
+3. Authenitcation server. => That's how you know you are talking to banks, 
+4. HMAC => Used for intergrity 
 
-2.  record format (for actually sending data).
-
-   
-
-
+  
 
 # **Code Injection** 
 
@@ -1409,7 +1429,25 @@ Firewalls are implemented in routers and  controlled remotely using SDN
 
 * ### **Deep packet inspections:  e**xamining not only header fields but also the payloads in the datagram (including application-layer data). SInce most otraffic is now encrypted. 
 
+## Defences
 
+* Fire walls 
+
+* Access controls
+
+* Use of sade languages and tools
+
+* Wax
+
+* Time outs 
+
+* Isolation 
+
+* Monitoring 
+
+  
+
+  
 
 ## Application Proxy FireWalls
 
@@ -1420,17 +1458,164 @@ Firewalls are implemented in routers and  controlled remotely using SDN
 
 
 
-**Host Firewalls** 
-
-
-
-
+**Host Firewalls**
 
 HOST
 
 
 
+App layer:** 
 
 
-### **App layer:** 
+
+# Malware, intrusion detection 
+
+So far we've seen 
+
+1. Code injection 
+2. Buffer overflow 
+3. Side channel
+
+## Common reasons of hacking your system
+
+1. Data theft
+
+2. Inject/flasigy data
+
+3. encrypt data + ransom it 
+
+4. delete it
+
+5. break stilld contrilled by a computer established persistent access spanning
+
+   ==> Payload
+
+## Kinds of payload
+
+1. Viruses : attaches to some host. The host reproduces it. Files that executes some code when opened. Or word doc + uba maccros pdf with java script.
+2. Worms: not dpendent of the host files to be opened. It runs as its own  process. Morris Worm is the most common one.  Back in the 80's 
+3. Root Kits: Malware that runs in the kernel can modify the operatoe od sysycall 
+
+
+
+Who are the attackers 
+
+1. State sponosred group
+2. Criinals
+3. Political group (anonymous)
+
+What are the skills?
+
+1. script kiddies
+
+
+
+## **Intrusion Lifecyle**
+
+* Pre intrusion
+
+* Privelage esclation 
+
+* Cover up
+
+  
+
+# ISOLATION 
+
+Reduce harm caused by anyone Vulnerabilty. No software has ever full escaped vulnerability. 
+
+* containers
+* UMs
+* Psychics Isolation 
+* Process 
+
+Defense in depth 
+
+Memory Erros /corruption 
+
+Defense are realted to the principle of least privileged. Achieve that via Isolation. 
+
+* Limit the previlieges of User/processes as much as possible 
+
+* Reliailtuy /deployment. KNowing dependecies /require 
+
+* one vulnerabilty has less severe consequences. 
+
+  
+
+## Least Isolated 
+
+* code in 2 processes or saved in machine
+
+ISOLAtion 
+
+## Most Isolated 
+
+* 2 processes on different physical diffrent machines 
+
+## 2 Threads
+
+* Different Stacks 
+* Address space (pase tables)
+
+in order to protect one thread from screwing up theater. we can include a conditional variables to protect teh shared data. (critical section)
+
+* File descriptions are shared
+* File stystem are shared 
+*  Pointers are shared
+
+Piece of software that is mostly used is the browser. 
+
+## 2 processes 
+
+* Don't share address space
+* Open Fd's or fork()
+* File system
+* libraries 
+
+## Containers 
+
+
+
+# ETHICS
+
+* We write software to Have an impact onpeople and the World 
+
+  How are the people impacted by our softwares 
+
+  * StakeHolders: anyone on the internet 
+  * Customers + users 
+  * Employeees
+  * cloud providers / ISP (internet service providers)
+  * Children 
+
+## Limit risk / cost of mistaks 
+
+1. Isolation + System design 
+
+2. Version control + back ups
+
+3. Tetings _ static and Dyanmic analysis (turnin on synitizer)
+
+4. Code Reviews. 
+
+5. External Audits 
+
+   
+
+## Main take ways
+
+1. Network
+2. Cryptography  (4 main components )
+3. Vurnelabilty and Defences 
+4. Ethics
+
+
+
+## Encryption File Sytem 
+
+NOtes 
+
+* Override the already existing file. Test Truncate 
+* open , read, get attritude 
 
