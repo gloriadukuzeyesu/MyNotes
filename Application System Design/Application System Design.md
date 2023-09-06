@@ -344,4 +344,61 @@ If you know ahead of time what fragment you want in your activity, you can have 
 
 * Easy to write tests that perform sequences of user actions and then assert that the app bheaves as expected. 
 
+* [Espresso Cheat sheet](https://developer.android.com/training/testing/espresso/cheat-sheet)
+
+# Concurrency 
+
+Tasks are overllaping in real time. 
+
+Threads can handle each task in parralle to acheiver concurrency 
+
+Multithreading and parallelism. 
+
+### 	**Downside:** 
+
+* When there is shared data .
+
+	* All Synchronization is programming responsibilities
+	* Create and destroy a thread is exprensive. Expensive to create and switch between threads bcz of involve kernel 
+	* Debugging is hard. 
+
+Relatve life time of threads. 
+
+* It doesn't depend on how or when threads are created. 
+
+`Select()` wait for any of a set of file descriptibrd to be ready.  
+
+```
+while(Select()) {// locked Select there is no use of CPU time, 
+Handle socket that is ready. 
+}
+```
+
+
+
+## Common libraries to achieve this. 
+
+You provide callbacks for different event types. Where server socket has client, here is what to to. This is how you'd build the program. 
+
+* lib event 
+
+* Ribs
+
+  * No Parallellism 
+  * Most of the time is spend waiting. 
+  * No locks, no mutex. Meaning no one can touch your code. 
+  * `yield()` function threading where Threads explicity 'yield'
+  * Switching is fast
+  * Allocation is fast. We can have houndreds and thousands of these. And that is okay! 
+  * No kernel is involved. 
+  * `Read ()` -> wrapped - `read()`schedule and read then `yield()`. 
+
+  
+
+  Promises / futues
+
+  ## Coroutine
+
+  Function can that can run and be paused and be resumed later. 
+
   
