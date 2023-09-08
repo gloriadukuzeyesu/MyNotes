@@ -402,3 +402,33 @@ You provide callbacks for different event types. Where server socket has client,
   Function can that can run and be paused and be resumed later. 
 
   
+
+  Team 
+
+  * What fragments did we use ? 
+  * Enums ( list of constant circle, rectangle, )
+  * View models stuff frgament
+  * fr attahce attached tothe view 
+  * Drawinng code in its own fragemtnt. And attache 
+  * On draw to the view will draw the bitmap( disaoly it)
+  * in order to draw we need Canvas that wrapping the bit map, 
+  * redrawmethod ( invalidate)
+  * Custom view ( setter )
+  * Splash screen ( create navigation)
+
+  
+
+  
+
+  ```kotlin
+  
+  
+  ```
+  
+  
+  
+  
+  
+  
+  
+  
