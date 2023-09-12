@@ -427,8 +427,173 @@ You provide callbacks for different event types. Where server socket has client,
   
   
   
+  # Peristence Storage
+  
+  ## Files and Rooms
+  
+  ## DataStore
+  
+  * Datastore is perisitence and provides key and values storage. It is a SSD bundle
+  * API uses coroutine and flows ( so we will have to use coroutines)
+  * It is SSD persistence hashtable
+  * It gets destroyed when you rebuild the app
+  * There is a also a type safe version ( we won't cover it this time)
+  
+  ## Datastore setup code
+  
+  ````kotlin
+  // this extension part goes outside outside the class. 
+  val Contex.datastore: DataStore<Preferences> by preferenceDataStore(name = "preferenceFilename") // all this are functions that are being called. It looks like we are accessing it.
+  
+  
+  inside your context
+  // access the datastore by doing this
+  val prefs: Flows<Preferences> datastore.data // will track prefs in the map over time and gets updates 
+  // type safe
+  val keyForIntValye : Prefernces.Key<Int> = intPreferences("SomeKey") // the key here will  an int. 
+  you want to use key as string by calling stringPreferencesKey("another_key")
+  val keyForStringValue = stringPreferenceskey("another_key") // the key wher is a string
+  ````
+  
+  Flows are like coroutines for live data. 
   
   
   
+  Edititng or Writing the DataStore operations. 
+  
+  ```kotlin
+  // a suspend func, so run in a coroutine scoel 
+  datastore.edit { prefs: MutablePreferences -> 
+    prefs[myKey] = myvalue
+  }
+  
+  // collect() is used to update. It acts as livedata.observe()
+  preferences.collect() {
+    
+  }
+  
+  ```
   
   
+  
+  Datastore is a hashTable for Kotline but which is stored on the ssd. 
+  
+  ## When to use DataStore
+  
+  * Simple and small key-value data
+  * Requires no permission, but it is slow sincce it is store on the disk. 
+  * When you get data from datastore, it loads the whole thing, and when you do any other activity it loads the whole thing. 
+  
+  ## Files
+  
+  * Same APi as java ( all the file system works here too)
+  * The issues comes with where you want to put these code. 
+  * getFilesDr()` and `getExternalFilesDir()` will return the file objects that corresponds to thte folder. 
+  * External **cache**. (Replace the files with Cache). Cache stores for external data. SOmetime in the future, android might delete this folders to make some space. This place would not be a good idea to put documents. 
+  * If you app works with media, they are stores tha tyou can use to share the data. you put mediaStore API in the `AndroidManifext.xml`
+  
+  
+  
+  Only one UI thread has to run. 
+  
+  ```
+  MainScope().launch{
+  
+  }
+  ```
+  
+  DataStore in nka external. Imeze nka memory card. Ubikaho ibintu ukaba wabyaaceceing nyuma. Ark nukura app muri phone ukongera uka yshyira muri phone, data zizaba zagiye, nibwo buryo
+  
+  The file created is stored in this directory on the emulator `The data -> data-> name of the app.`
+  
+  
+  
+  Persistent Storage
+  
+  * in the MVVM, we can replace our Model as our datastore. 
+  * But again the view has has a lot of work to do
+  * The model  will hav two parts, 
+    *  VM for VM ( it is called Repository ). Gives a frienfly interface to the View model.SO the the view model willl get the data in the form it was. repository acts a mediatory. 
+      * Repository is very usefully also when we are getting data from different sources like ( two difference databases, or HTTP request )
+    * Storage ( data bases, datastore, etc)
+  
+  
+  
+  ## Databases => SQLite 
+  
+  * Library and part of your own application. Stores a databases stored locally on the disk. 
+  * Super usefully tools 
+  * Copy of it in every android and IOS app
+  * works by preparing statements. things like `select * from table where name = ? `
+  
+  
+
+## Room
+
+* An object Relation Mapper  ( same thing as LINQ)
+
+* object <-----> sql queries /tables 
+
+  ## Entity classes
+
+  * IN ER diagrams are the object, or Schemas
+  * They are Tables .......schemas
+  * we write them with an @Annotation 
+  * Basically every class is a column in the table 
+  * @Annotate the Primary Key 
+  * You can do things like rename
+
+  ## **Data base class** : 
+
+  It ian abstract class that extends Room DB
+
+  specify tables in Db via @annotation 
+
+  Data Access object
+
+  * Called @Dao
+  * interface 
+  * each method is a db query 
+  * For some method we can use annotation like @Delete, meaning it will delete
+  * or we put @sql ('selecte * .....') // creating the pre pared statements
+
+  If we are using this room databases
+
+  * We want to have only one database object in the whole project
+
+    * And this is called a `Singleton` 
+    * To implement that singleton do this. 
+
+    ````kotlin
+    static single getInsance() {
+    	if (instance is null) {
+    		construct it, 
+    	} else 
+      	return instance. 
+    }
+    ````
+
+  * Proble arise if there are two threads together, there can be race condition. So we need a mutex. We used something called double mutex. 
+
+    In Kotline we use something called `object` and this will create a singleton. 
+
+    ```kotlin
+    object {
+      // does the double checking directly. But it is tricky to implement when there is a constructor 		
+      	// parameters that the 
+    }
+    //  we have to write this code ourselves in our room class.
+    ```
+
+    
+
+  
+
+  
+
+
+
+
+
+
+
