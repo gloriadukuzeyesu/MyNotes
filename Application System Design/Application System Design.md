@@ -587,13 +587,75 @@ You provide callbacks for different event types. Where server socket has client,
 
     
 
+  ## JetPack Compose
+
+  * Instead of our UI object between views they are going to be functions
+  * All functions are void. We can interact with these functions by passing parameter.
+  * All function are annotated with @composable
+  * The key idea when we are writing this things. Special wrapper class called State that let you explicityl specify variables that will be modified and should trigger updates to the U.
+  * If the last parameter which is a call back, is a special one.  `RowScope()` , `columnScope()`  means inside the body of this, you can access these stuffs.
+  * No longer have a GUI designer. They prodide a Preview, that is what you use to see what you are doing. 
+  * Most compose functions take modifiers parameter
+  * There is a special kind of data
+  
+  ### Problem that are trying to be solved
+  
+  * Easier to test
+  * Make the state dependecies clear, simpliy what is going on with the state
+  * Layout is easier to. Rules are easier. 
+  * Easy to maintain. 
+  
+  ## State
+  
+  * To redraw a coposable you have to call the function again
+  
+  * If you have data that changes over time, you'd need to use state
+  
+    ###  	1. **Remember**
+  
+    ```kotlin
+    var someData by remember {mutablestate(" ")}
+    ```
+  
+    * CollectAsState()
+    * ObserverasState()
+  
+    Example of Jetpack compose Views
+  
+    ### EditText in compose
+  
+    ```Kotlin
+     var name by remember{ mutableStateOf(" ")}
+     outlineTExtField(
+     	value = name, // the text that displayes 
+     	onValueChange = { name = it},// same idea as how when you send a text messahe now, you can edtitx the text message. 
+       label = { Text("Name")}
+     )
+    ```
+
+Pass state down, bublle events up
+
+* It is easier to pass state to children but it is hard to back up data to the parent
+
+* If we need to cnage the data, the child need to have callback, in case it want to update 
+
+* You want to declare the state in the parent. SO that if there is any child that want to update it, can use that state. It gets a callback.
+
+* Content are children. Example, Text view doesn't have children and button doesn't. But somethng like 
+
+* YOu use `lazy colum` as a recyle review. It will only use as much of memory as it needs to. 
+
   
 
   
 
 
 
+Notes on the Code from Ben
 
-
-
+* Surface is like the place holder
+* on the display, it has column that diplays rows which are children. 
+* Content are place holder
+* Note: If you can't write a prview for your app, it means you are going too deep. The you should revisit your code.
+* 
 
