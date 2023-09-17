@@ -656,5 +656,5 @@ Notes on the Code from Ben
 * Surface is like the place holder
 * on the display, it has column that diplays rows which are children. 
 * Content are place holder
-* Note: If you can't write a prview for your app, it means you are going too deep. The you should revisit your code.
+* Note: If you can't write a preview for your app, it means you are going too deep. The you should revisit your code.
 
