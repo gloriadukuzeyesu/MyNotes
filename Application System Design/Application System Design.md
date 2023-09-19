@@ -647,9 +647,6 @@ Pass state down, bublle events up
 
   
 
-  
-
-
 
 **Notes on the Code from Ben**
 
@@ -657,4 +654,69 @@ Pass state down, bublle events up
 * on the display, it has column that diplays rows which are children. 
 * Content are place holder
 * Note: If you can't write a preview for your app, it means you are going too deep. The you should revisit your code.
+
+
+
+
+
+##  Sizing 
+
+Library libraey author method. 
+
+* App Devs
+* Sizw + place everything 
+
+## Compose Drawing Alogarithm
+
+3 phases on what happens when we draw on the scree
+
+1. Composition : call the function buuild a tree of composable.
+
+   * State independent 
+
+     ```kotlin
+     if (somestate) {
+     	Text(...)
+     }else {
+     	Button (....)
+     }
+     ```
+
+     
+
+2. Measurement + Layout : Components are sized and placed. 
+
+3. Drawing 
+
+### Measurement
+
+* Some properties of an element size info about children
+
+* Implemented recursive. Measure ( size (column)) 
+
+  ​	 top element => (o-w, o-H)
+
+  ​	Padding 
+
+  ​	next element => (o - (w - p), o - (H -P))
+
+  This returns a placable.  ( it is a return type or the type of the size of the children)
+
+  Parent elements measure all children assign position to placeabble. 
+
+## Modifiers 
+
+* use to center text in the middle
+* or position in general
+
+## Scaffold Class.
+
+* Surface is like a background. It like a container. 
+* Scaffold itseld doesn't draw anything
+
+LaunchedEffect : 
+
+## Animation 
+
+teening means interpolating between two things. 
 
