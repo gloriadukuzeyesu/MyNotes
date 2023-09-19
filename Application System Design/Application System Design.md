@@ -651,7 +651,7 @@ Pass state down, bublle events up
 
 
 
-Notes on the Code from Ben
+**Notes on the Code from Ben**
 
 * Surface is like the place holder
 * on the display, it has column that diplays rows which are children. 
