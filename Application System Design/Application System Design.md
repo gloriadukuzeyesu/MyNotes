@@ -438,6 +438,7 @@ You provide callbacks for different event types. Where server socket has client,
   * It is SSD persistence hashtable
   * It gets destroyed when you rebuild the app
   * There is a also a type safe version ( we won't cover it this time)
+  * use to create a simple, safer and asynchronous API for storing data
   
   ## Datastore setup code
   
@@ -459,7 +460,7 @@ You provide callbacks for different event types. Where server socket has client,
   
   
   
-  Edititng or Writing the DataStore operations. 
+  ## Edititng or Writing the DataStore operations. 
   
   ```kotlin
   // a suspend func, so run in a coroutine scoel 
@@ -481,7 +482,7 @@ You provide callbacks for different event types. Where server socket has client,
   ## When to use DataStore
   
   * Simple and small key-value data
-  * Requires no permission, but it is slow sincce it is store on the disk. 
+  * Requires no permission, but it is slow since it is store on the disk. 
   * When you get data from datastore, it loads the whole thing, and when you do any other activity it loads the whole thing. 
   
   ## Files
@@ -719,4 +720,38 @@ LaunchedEffect :
 ## Animation 
 
 teening means interpolating between two things. 
+
+
+
+
+
+# **Networking, Asynchrony**
+
+* Make sure slow stuffs don't happen on the main thread.
+
+  ## Request Preparation
+
+  It contains may parts:
+
+  * Schema (https or https)
+  * user info
+  * Host 
+  * Port
+  * Fragmemt
+
+  ## URI.Builder
+
+  ## Permissions. 
+
+  You need to request permissions from the user. Cz you can't access certain parts of the app. 
+
+  
+
+  Use GSON() lib from google to serializing and deserializing JSON. 
+
+  
+
+  
+
+
 
