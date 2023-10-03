@@ -751,7 +751,34 @@ teening means interpolating between two things.
 
   
 
+  ## Mixed Languages
   
+  Why?
+  
+  * Libraries 
+  * * Take advantage of langauge tradeoffs
+    * Platform constrainst
+    * Embedding "Scripting language"
+    *  transition
+    * 
+
+Native compiled languages
+
+* function calls
+
+  * Set up arguments
+
+  * call instructins 
+
+  * handle return values
+
+    // All languages have to agree on these above points. This is called Calline convertions or ABI 
 
 
+
+## JNI 
+
+Java Native Interface. 
+
+It allows us to call c++ code in java
 
