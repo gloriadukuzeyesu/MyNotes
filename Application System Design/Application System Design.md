@@ -782,3 +782,18 @@ Java Native Interface.
 
 It allows us to call c++ code in java
 
+## HTTP
+
+* Simple format
+* No encryption 
+* No encryption 
+* Request - response,  text based ( human readable)
+
+### Decoding request
+
+* Look for verbs like GET, POST, PUT, DELETE
+* Url path query request
+
+Reactive pattern
+
+* Single thread waits for events 
