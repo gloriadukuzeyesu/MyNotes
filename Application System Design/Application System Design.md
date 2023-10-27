@@ -797,3 +797,179 @@ It allows us to call c++ code in java
 Reactive pattern
 
 * Single thread waits for events 
+
+
+
+## Work Manager
+
+* It is used for scheduling persistent work 
+* Used for back process, sysncy and database
+* Specific the work, and clasify the class, and `doWork()` method is class, that inherits from Worker then return the Result. 
+* `doWork()` takes a hashmap and returns the hasmap. Whatever the signature the work requires, since the parameter is a hash table, the look up will be efficiency. 
+* Tradeoffs, if the parameter is wrong object
+* Specific `WorkRequest` object. 
+
+## Chaining Tasks
+
+*  ``WorkRequest`can be chanined to specify graphs of dependent work to be perfomed. break up your task and split into small taks and put in the graph. One by one
+
+# Sensors
+
+Pyshical/virtual sensors
+
+* Oftern low level sensors 
+
+  ### **Categories** 
+
+  * Motion Sensors : example: rotation, velocity, acceleration. 
+  * Position sensors:  Example: compass
+  * Environental Sensors : temperature and humidity
+
+  ### Measure 
+
+  * Cordinate system ( example, 0,0 is the middle of the screen)
+
+* Sensor Frame Work lives in the `android.hardware package`
+
+* 4 main components : 
+
+  	 * SensorManager
+      	 * Sensor: base classs for all sensors 
+      	 * SensorEvent  : how you get data
+          	 * SensorEventListener
+
+  Reporting models
+
+  * These callbacks triggers callbacks differently. 
+    * continous: Update at a constant frequency.
+    * On Change : only update if the measurement changes
+    * One Shot : Only measure once
+
+  ## Typical Work Flow
+
+  1. Get the SensorManager instance
+  2. Use it to grab the Sensors you want to use
+  3. Register listeners for those sensors with the manager
+  4. Get your measurements when the callbacks are triggered
+  5. Unregister your listener : Very important so you are not running your callback hundreds of times a second when you don't need to!
+
+  ## Gyroscope sensors
+
+  * Detects movements 
+  * Angular velocity around axis (x,y,z) in units of radians/seconds
+
+  
+
+  ### Flow base approach
+
+  * Create a flow adapter using the `ChannelFlowFUnction` 
+
+  * A channel is a queue that can be shared across coroutines. One coroutine can en![Screenshot 2023-10-25 at 10.16.11 PM](Application%20System%20Design/Screenshot%202023-10-25%20at%2010.16.11%E2%80%AFPM.png)
+
+
+
+
+
+a channel is a queue. You can check is Succes. 
+
+Convert teh sensor into a Flow. 
+
+## LaunchedEffect 
+
+* Don't rely on the `CollectAsState()` method ,instead run `collect` in coroutine ourselves. 
+* Do it an way that compose know that 
+* The `LaunchedEffect` composable lets us run a coroutine in it. and modifications we make to state are "noticed" and will trigger updates to UI.
+* ![Screenshot 2023-10-25 at 10.30.57 PM](Application%20System%20Design/Screenshot%202023-10-25%20at%2010.30.57%E2%80%AFPM.png)
+
+The system notices updates to my state from within Launched Effect and will redraw the Text when it changes. 
+
+
+
+## Accelerometer
+
+* Similar to gryscope but it measures linear (not angular) acceleration (not velocity)
+* detects shaking
+* use `dotproduct` if negative, two vectors were in poitnin in the opposite directions. If positive, vectors were in the same directions. 
+
+
+
+## Application Servers 
+
+All request require some sort of public server.
+
+* request "processing"
+* decoding , authentication ("routing")
+* authentication
+* authorization
+* handling a variety of request types 
+* Encoding  responses
+* data storage (persistence)
+* **Concurency** :  
+
+### Things that are specific storage
+
+* Model 
+* Specific request types
+* Encoding/decoding 
+* Authentication and authorization 
+
+## **HTTP Servers**
+
+Very famous bcz
+
+* Very simple
+
+* Easy to ready 
+* Old. meaning it is well supported
+* To figue out what to do, we look at the verb , GET, POST PUT, and DELETE.
+* Look at the `url` , path query string. Examp gloria/4z/emai?enc = utf8. It contains the host, path, name, userinfo, Schema, etc
+* header Authorization : provides the information saying authorized to access the data.
+
+
+
+**Concurrency**
+
+* use of threads. 
+
+* Thread pool.  Fixed # of threads.
+
+* Thread are easy to use. But diffucult to control. 
+
+* how to get concorency with a single thread?
+
+  ```java
+  while (true) {
+  	for event in getEvent() {
+  		Process(event) -> must be fast
+  	}
+  }
+  ```
+
+  use `select` system call for this single  thread concurrency. 
+
+  **io_uring** is designed to reduce the number for system call you can make. submit a bunch of buffers. 
+
+
+
+#### Process event per HTTP file server
+
+1. accept . 
+2. create the port for the client. Get the  Socket. 
+3. try to parse the request
+4. start file read
+5. register for notifications
+6. bytes on the file ready, copy bytes to sockets.
+7. Copy bytes to socket.
+
+In all these steps, parsing is the maybe the  most CPU expensive. since we have to parse everysingle character and parse. 
+
+
+
+### Reactor Pattern
+
+The single thread waits for events, dispaches processing of the events. First popularized by NGINXc kok. 
+
+The API => App devs provides the callbacks 
+
+
+
