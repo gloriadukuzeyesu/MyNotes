@@ -6,8 +6,6 @@
 
 => Procedure programming is about creating methods that perform operations on the data. 
 
-=> 
-
 Advantages
 
 *  OOP is faster and easier to execute
@@ -40,7 +38,7 @@ When an object is created, it inherits all the variables and methods for the cla
 
 ## **Java modifiers**
 
-* ### class
+* ### class Modifier 
 
 1. Public : means a class is accessible in another class
 2. Default: means a class is only accessible by the classes in the same package. 
@@ -167,7 +165,6 @@ class Car extends Vehicle {
     void MyName() {
         System.out.println("I am ford focus");
     }
-
 }
 
 public static main() {
@@ -203,14 +200,12 @@ class Toyota extends CarModels {
     void honk() {
         System.out.println("Totoya honks honks");
     }
-
 }
 
 class Kia extends CarModels {
     void  honk() {
         System.out.println("Kia honks honks");
     }
-
 }
 ```
 
